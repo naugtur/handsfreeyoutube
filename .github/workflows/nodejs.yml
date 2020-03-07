@@ -1,0 +1,41 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ouzi-dev/commit-status-updater@v0.1.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build, and test
+      run: |
+        npm ci
+        npm run build --if-present
+        npm test
+      env:
+        CI: true
+    - if: success()
+      uses: ouzi-dev/commit-status-updater@v0.1.1
+      with: 
+        state: success
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - if: failure()
+      uses: ouzi-dev/commit-status-updater@v0.1.1
+      with: 
+        state: failure
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
