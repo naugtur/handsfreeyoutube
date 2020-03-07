@@ -20,7 +20,7 @@ import { NowRequest, NowResponse } from '@now/node'
 
 
 function ytGet(query): Promise<ytpl.result> {
-    return ytpl(query, { limit: 10 })
+    return ytpl(query, { limit: 100 })
         
 }
 
