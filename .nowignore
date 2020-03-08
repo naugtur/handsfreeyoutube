@@ -1,0 +1,12 @@
+node_modules
+
+# dotenv environment variables file
+.env
+
+# configs
+.vscode
+
+# local testing
+?
+~*
+.now
