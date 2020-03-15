@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handsfree youtube</title>
+    <style>
+        body {
+            font-size: 14pt;
+            text-align: center;
+            font-family: sans-serif;
+
+        }
+
+        form * {
+            display: block;
+            margin: 1em auto;
+            padding: 1em;
+            max-width: 800px;
+            width: 100%;
+
+        }
+
+        button,
+        input {
+            border-radius: 3px;
+            border: 1px solid #777;
+            font-family: cursive;
+
+        }
+
+        button{
+            background-color: #777;
+            color: #fff;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        <h4>Handsfree youtube</h4>
+        <p>Put a playlist id or a channel/user URL here to convert it into a podcast</p>
+        <input type="text" id="item">
+        <button>Give me a podcast link!</button>
+        <p>Put this link as RSS in your podcast app:</p>
+        <a href="" id="result"></a>
+    </form>
+    <script>
+        const result = document.querySelector("#result");
+        const item = document.querySelector("#item")
+        document.querySelector("button").addEventListener("click", e => {
+            const link = window.location.origin + "/api/feed?q=" + encodeURIComponent(item.value)
+            result.setAttribute("href", link)
+            result.innerText = link
+        })
+
+    </script>
+</body>
+
+</html>
