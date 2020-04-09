@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "10.x"
+    "node": "12.x"
   },
   "scripts": {
     "test": "node test/yt.js"
@@ -12,9 +12,9 @@
   "author": "naugtur",
   "license": "GPL-3.0",
   "dependencies": {
-    "@now/node": "^1.4.1",
+    "@now/node": "^1.5.0",
     "rss": "^1.2.2",
-    "ytdl-core": "^2.0.0",
+    "ytdl-core": "^2.0.1",
     "ytpl": "^0.1.20"
   }
 }
