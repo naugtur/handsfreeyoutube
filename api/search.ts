@@ -16,7 +16,6 @@ function getResults({ selfURL, q }) {
     return Promise.resolve(q)
         .then(ytGet)
         .then((info) => {
-            console.log(info)
             const items = flatten(info.items);
             let feed = new RSS({
                 title: `yt: ${q}`,

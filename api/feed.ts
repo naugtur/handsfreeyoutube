@@ -50,6 +50,15 @@ function getPlaylistItems({ selfURL, q }) {
                     title: item.title,
                     enclosure: { url: `${selfURL}api/yt?v=${item.id}`, type: 'audio/mp4', length: 60 },
                     url: `${selfURL}api/yt?v=${item.id}`,
+                    custom_elements: [
+                        {
+                            'itunes:image': {
+                                _attr: {
+                                    href: item.thumbnail
+                                }
+                            }
+                        }
+                    ]
                 })
             })
 
