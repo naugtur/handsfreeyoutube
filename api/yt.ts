@@ -26,4 +26,10 @@ export default (req: NowRequest, res: NowResponse) => {
             res.status(302).setHeader('location', audioInfo.url)
             res.end()
         })
+        .catch(err => {
+            res.status(500)
+            console.log(err.stack)
+            res.send(err.message)
+            res.end()
+        })
 }

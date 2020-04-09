@@ -35,7 +35,7 @@ function getPlaylistItems({ selfURL, q }) {
             let feed = new RSS({
                 title: `${info.title} - ${info.author.name}`,
                 description: 'Handsfree youtube feed',
-                feed_url: `${selfURL}api/feed?q=`,
+                feed_url: `${selfURL}`,
                 ttl: '60',
                 custom_namespaces: {
                     'itunes': 'http://www.itunes.com/dtds/podcast-1.0.dtd'
