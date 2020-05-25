@@ -7,18 +7,26 @@ name: deps-watch
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  schedule:
+    - cron: 0 0 * * *
+ 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: GitHub Action for package.json update.
-      uses: taichi/actions-package-update@v0.5.0
+    - uses: actions/checkout@master
+    - name: set remote url
+      run: git remote set-url --push origin https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+    - name: package-update
+      uses: taichi/actions-package-update@0.5.0
+      env:
+        AUTHOR_EMAIL: naugtur@gmail.com
+        AUTHOR_NAME: naugtur
+        EXECUTE: "true"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        LOG_LEVEL: debug
+      with:
+        args: -u --packageFile package.json --loglevel verbose
