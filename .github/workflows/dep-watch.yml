@@ -29,4 +29,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         LOG_LEVEL: debug
       with:
-        - "-u --packageFile package.json --loglevel verbose"
+        args: -u --packageFile package.json --loglevel verbose
