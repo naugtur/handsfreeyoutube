@@ -2,14 +2,7 @@ name: automerge
 on: 
   pull_request:
     types:
-      - labeled
-      - unlabeled
-      - synchronize
       - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
   pull_request_review:
     types:
       - submitted
@@ -20,7 +13,7 @@ on:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    if: github.actor == 'github-actions[bot]'
+    if: github.actor == 'github-actions[bot]' || github.actor == 'naugtur'
     steps:
       - name: automerge
         uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
