@@ -15,6 +15,11 @@ on:
       - completed
   status: {}
 jobs:
+  printactor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print actor
+        run: echo "${{ github.actor }}"
   automerge:
     runs-on: ubuntu-latest
     if: github.actor == 'github-actions[bot]'
