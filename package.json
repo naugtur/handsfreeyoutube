@@ -12,7 +12,7 @@
   "author": "naugtur",
   "license": "GPL-3.0",
   "dependencies": {
-    "@now/node": "^1.7.2",
+    "@now/node": "^1.7.3",
     "rss": "^1.2.2",
     "ytdl-core": "^3.1.2",
     "ytpl": "git://github.com/Aasim-A/node-ytpl.git#fix-reload-now",
