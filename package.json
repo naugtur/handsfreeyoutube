@@ -16,6 +16,6 @@
     "rss": "^1.2.2",
     "ytdl-core": "^3.1.2",
     "ytpl": "git://github.com/Aasim-A/node-ytpl.git#fix-reload-now",
-    "ytsr": "^0.1.15"
+    "ytsr": "^0.1.16"
   }
 }
