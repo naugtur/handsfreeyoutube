@@ -14,7 +14,7 @@
   "dependencies": {
     "@now/node": "^1.7.2",
     "rss": "^1.2.2",
-    "ytdl-core": "^3.1.2",
+    "ytdl-core": "^3.1.3",
     "ytpl": "git://github.com/Aasim-A/node-ytpl.git#fix-reload-now",
     "ytsr": "^0.1.15"
   }
