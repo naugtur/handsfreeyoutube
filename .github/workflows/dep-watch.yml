@@ -21,7 +21,7 @@ jobs:
     - name: set remote url
       run: git remote set-url --push origin https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
     - name: package-update
-      uses: taichi/actions-package-update@master
+      uses: taichi/actions-package-update@c2269208069621bde7d150337434c0a2c10bfba3
       env:
         AUTHOR_EMAIL: naugtur@gmail.com
         AUTHOR_NAME: naugtur
