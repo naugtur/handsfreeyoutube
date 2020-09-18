@@ -2,12 +2,12 @@ const ytpl = require('ytpl')
 const ytdl = require('ytdl-core')
 const ytsr = require('ytsr')
 const assert = require('assert')
+const axios = require('axios')
 
 
 function ytSearch(query) {
     return ytsr.getFilters(query).then(filters => {
         const filter = filters.get('Type').find(o => {
-            console.log(o)
             return o.name === 'Video'
         });
         return ytsr(null, { limit: 20, safeSearch: true, nextpageRef: filter.ref })
@@ -31,6 +31,13 @@ const youtubeToolsTest = async () => {
         assert(vid.formats)
         assert(vid.formats[0])
         assert(vid.formats[0].url)
+
+        const re = await axios({
+            url: vid.formats[0].url,
+            responseType: 'stream',
+            method: 'get'
+        })
+        assert(re.status===200)
 
         const search = await ytSearch('meetjs summit') 
         assert(search.items.map(i=>i.title).some(t=>t==='MeetJS Summit'))
