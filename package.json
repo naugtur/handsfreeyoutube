@@ -14,7 +14,7 @@
   "dependencies": {
     "@now/node": "^1.7.4",
     "rss": "^1.2.2",
-    "ytdl-core": "^4.0.2",
+    "ytdl-core": "^4.0.3",
     "ytpl": "^1.0.1",
     "ytsr": "^1.0.4"
   },
