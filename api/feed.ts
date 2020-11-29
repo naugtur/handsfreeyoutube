@@ -1,27 +1,26 @@
 import ytpl from 'ytpl'
+import { guess } from '../lib/ytpl-guess'
 import RSS from 'rss'
 import { NowRequest, NowResponse } from '@now/node'
 
-// type YtInfo = {
-//     id: string;
-//     url: string;
-//     url_simple: string;
-//     title: string;
-//     thumbnail: string;
-//     duration: string;
-//     author: {
-//         id: string;
-//         name: string;
-//         user: string;
-//         channel_url: string;
-//         user_url: string;
-//     };
-// }
-
+interface ytMinimum {
+    title: string;
+    author: null | {
+        name: string;
+    };
+    items: {
+        id: string;
+        title: string;
+        thumbnail: string;
+    }[];
+}
 
 function ytGet(query): Promise<ytpl.result> {
     return ytpl(query, { limit: 100 })
-        
+}
+
+function ytFallback(query): Promise<ytMinimum> {
+    return guess(query)
 }
 
 const flatten = arr => [].concat(...arr);
@@ -30,10 +29,20 @@ const flatten = arr => [].concat(...arr);
 function getPlaylistItems({ selfURL, q }) {
     return Promise.resolve(q)
         .then(ytGet)
+        .catch(e => {
+            console.error('oops', e)
+            return ytFallback(q)
+        })
         .then((info) => {
+            console.log(info)
             const items = flatten(info.items);
+            let title = "No title found"
+            try {
+                title = info.title;
+                title = `${info.title} - ${info.author.name}`
+            } catch (e) { }
             let feed = new RSS({
-                title: `${info.title} - ${info.author.name}`,
+                title: title,
                 description: 'Handsfree youtube feed',
                 feed_url: `${selfURL}`,
                 ttl: '60',
@@ -68,7 +77,7 @@ function getPlaylistItems({ selfURL, q }) {
 
 export default (req: NowRequest, res: NowResponse) => {
     const selfURL = `https://${req.headers.host}/`
-    if(!req.query.q){
+    if (!req.query.q) {
         return res.send(`
         <form method="GET">
         playlist id or playlist/user/channel url: <input type="text" name="q" />
