@@ -5,14 +5,11 @@ const assert = require('assert')
 const axios = require('axios')
 
 
-function ytSearch(query) {
-    return ytsr.getFilters(query).then(filters => {
-        const filter = filters.get('Type').find(o => {
-            return o.name === 'Video'
-        });
-        return ytsr(null, { limit: 20, safeSearch: true, nextpageRef: filter.ref })
-    })
-
+async function ytSearch(query) {
+    const filters1 = await ytsr.getFilters(query);
+    const filter1 = filters1.get('Type').get('Video');
+    const searchResults = await ytsr(filter1.url, { pages: 1 });
+    return searchResults;
 }
 
 const youtubeToolsTest = async () => {
