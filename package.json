@@ -19,9 +19,9 @@
     "lodash": "^4.17.20",
     "miniget": "^4.1.0",
     "rss": "^1.2.2",
-    "ytdl-core": "^4.1.5",
-    "ytpl": "^2.0.1",
-    "ytsr": "^2.0.1"
+    "ytdl-core": "^4.1.6",
+    "ytpl": "^2.0.3",
+    "ytsr": "^3.0.0"
   },
   "devDependencies": {
     "axios": "^0.21.0"
