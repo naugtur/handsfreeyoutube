@@ -14,16 +14,16 @@
   "dependencies": {
     "@now/node": "^1.8.5",
     "dirty-json": "^0.9.2",
-    "fuse.js": "^6.4.3",
+    "fuse.js": "^6.4.6",
     "jmeta": "^1.0.6",
-    "lodash": "^4.17.20",
-    "miniget": "^4.1.0",
+    "lodash": "^4.17.21",
+    "miniget": "^4.2.0",
     "rss": "^1.2.2",
     "ytdl-core": "^4.1.7",
     "ytpl": "^2.0.3",
     "ytsr": "^3.0.0"
   },
   "devDependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.1"
   }
 }
