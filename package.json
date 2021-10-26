@@ -2,9 +2,6 @@
   "name": "handsfreeyoutube",
   "version": "1.0.0",
   "description": "",
-  "engines": {
-    "node": "12.x"
-  },
   "scripts": {
     "test": "node test/yt.js"
   },
