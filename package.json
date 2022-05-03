@@ -18,7 +18,7 @@
     "rss": "^1.2.2",
     "ytdl-core": "^4.10.1",
     "ytpl": "^2.0.3",
-    "ytsr": "^3.0.0"
+    "ytsr": "^3.7.0"
   },
   "devDependencies": {
     "axios": "^0.26.0"
