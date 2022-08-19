@@ -15,7 +15,7 @@ interface ytMinimum {
     }[];
 }
 
-function ytGet(query): Promise<ytpl.result> {
+function ytGet(query): Promise<ytpl.Result> {
     return ytpl(query, { limit: 100 })
 }
 
