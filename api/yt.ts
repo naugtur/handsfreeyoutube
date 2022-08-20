@@ -1,3 +1,4 @@
+// @ts-check
 import ytdl from 'ytdl-core'
 import { NowRequest, NowResponse } from '@now/node'
 
