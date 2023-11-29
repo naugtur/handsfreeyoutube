@@ -5,6 +5,12 @@
   "scripts": {
     "test": "node test/yt.js"
   },
+  "bin":{
+    "ytdlpl": "./cli/ytdlpl"
+  },
+  "files":[
+    "cli"
+  ],
   "keywords": [],
   "author": "naugtur",
   "license": "GPL-3.0",
@@ -16,8 +22,7 @@
     "lodash": "^4.17.21",
     "miniget": "^4.2.2",
     "rss": "^1.2.2",
-    "undici": "^5.28.1",
-    "ytdl-core": "4.10.0",
+    "ytdl-core": "^4.11.5",
     "ytpl": "^2.0.3",
     "ytsr": "^3.0.0"
   },
