@@ -16,13 +16,14 @@ const args = parseArgs({
   allowPositionals: true,
   options: {
     help: {
-      type: "string",
+      type: "boolean",
       short: "h",
+      default: false,      
     },
   },
 });
 
-if(args.options.help) {
+if(args?.options?.help || !args.positionals.length) {
   console.log(`Usage: ytdlpl <playlist> [playlist] [playlist] ...`);
   process.exit(0);
 }
