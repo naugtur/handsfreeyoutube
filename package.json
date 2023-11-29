@@ -1,14 +1,14 @@
 {
   "name": "handsfreeyoutube",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
     "test": "node test/yt.js"
   },
-  "bin":{
+  "bin": {
     "ytdlpl": "./cli/ytdlpl"
   },
-  "files":[
+  "files": [
     "cli"
   ],
   "keywords": [],
