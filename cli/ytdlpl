@@ -23,8 +23,9 @@ function getVidInfo(vid) {
   });
 }
 
-const streamIt = (item) =>
-  stream(
+const streamIt = (item) => {
+  console.log(`downloading ${item.id} ${item.title}`);
+  return stream(
     item.url,
     {
       maxRedirections: 2, //just in case, not observed for now
@@ -39,6 +40,7 @@ const streamIt = (item) =>
     console.error("retrying", e);
     return streamIt(item);
   });
+};
 
 ytpl(args.values.playlist, { limit: 100 }).then(async (playlist) => {
   console.log(playlist);
