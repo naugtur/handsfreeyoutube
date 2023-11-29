@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+const ytpl = require("ytpl");
+const { parseArgs } = require("node:util");
+const { stream } = require("undici");
+const fs = require("fs");
+const ytdl = require("ytdl-core");
+
+const args = parseArgs({
+  options: {
+    playlist: {
+      type: "string",
+      short: "p",
+    },
+  },
+});
+
+function getVidInfo(vid) {
+  return ytdl.getInfo(`https://www.youtube.com/watch?v=${vid}`).then((info) => {
+    const formats = ytdl.filterFormats(info.formats, "audioonly");
+    const prefered = formats.filter((f) => f.container.match(/mp4/))[0];
+    return prefered || formats[0];
+  });
+}
+
+const streamIt = (item) =>
+  stream(
+    item.url,
+    {
+      maxRedirections: 2, //just in case, not observed for now
+      method: "GET",
+    },
+    ({ statusCode, headers }) => {
+      console.log(`response received ${statusCode}`);
+      console.log("headers", headers);
+      return fs.createWriteStream(`./${item.title}.mp4`);
+    }
+  ).catch((e) => {
+    console.error("retrying", e);
+    return streamIt(item);
+  });
+
+ytpl(args.values.playlist, { limit: 100 }).then(async (playlist) => {
+  console.log(playlist);
+  console.log(`___________________________________________________`);
+
+  const vids = await Promise.all(
+    playlist.items.map(async (i) => ({
+      url: (await getVidInfo(i.id)).url,
+      title: i.title,
+      id: i.id,
+    }))
+  );
+  await vids.reduce((queue, item) => {
+    console.log(item);
+    return queue.then(() => streamIt(item));
+  }, Promise.resolve());
+});
