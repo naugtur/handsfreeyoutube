@@ -15,7 +15,7 @@
   "author": "naugtur",
   "license": "GPL-3.0",
   "dependencies": {
-    "@now/node": "^1.8.5",
+    "@vercel/node": "^3.1.7",
     "dirty-json": "^0.9.2",
     "fuse.js": "^6.5.0",
     "jmeta": "^1.0.6",

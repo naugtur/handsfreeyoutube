@@ -1,6 +1,7 @@
 // @ts-check
 import ytdl from 'ytdl-core'
-import { NowRequest, NowResponse } from '@now/node'
+import { VercelRequest, VercelResponse } from '@vercel/node'
+
 
 
 function getVidInfo(vid) {
@@ -12,7 +13,7 @@ function getVidInfo(vid) {
         })
 }
 
-export default (req: NowRequest, res: NowResponse) => {
+export default (req: VercelRequest, res: VercelResponse) => {
     const vid = req.query.v
     if (!vid) {
         res.status(404).end()

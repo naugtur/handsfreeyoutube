@@ -1,7 +1,7 @@
 import ytpl from 'ytpl'
 import { guess } from '../lib/ytpl-guess'
 import RSS from 'rss'
-import { NowRequest, NowResponse } from '@now/node'
+import { VercelRequest, VercelResponse } from '@vercel/node'
 
 interface ytMinimum {
     title: string;
@@ -75,7 +75,7 @@ function getPlaylistItems({ selfURL, q }) {
         })
 }
 
-export default (req: NowRequest, res: NowResponse) => {
+export default (req: VercelRequest, res: VercelResponse) => {
     const selfURL = `https://${req.headers.host}/`
     if (!req.query.q) {
         return res.send(`

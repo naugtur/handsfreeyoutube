@@ -44,9 +44,6 @@
         <p>Put a playlist id or a channel/user URL here to convert it into a podcast RSS link</p>
         <input type="text" id="item1">
         <button id="pll">Give me a podcast link!</button>
-        <p>Put search text here to convert it into a podcast RSS link</p>
-        <input type="text" id="item2">
-        <button id="sr">Give me a search result!</button>
         
         <p>Put this link as RSS in your podcast app:</p>
 
@@ -57,12 +54,6 @@
         document.querySelector("#pll").addEventListener("click", e => {
             const item = document.querySelector("#item1")
             const link = window.location.origin + "/api/feed?q=" + encodeURIComponent(item.value)
-            result.setAttribute("href", link)
-            result.innerText = link
-        })
-        document.querySelector("#sr").addEventListener("click", e => {
-            const item = document.querySelector("#item2")
-            const link = window.location.origin + "/api/search?q=" + encodeURIComponent(item.value)
             result.setAttribute("href", link)
             result.innerText = link
         })
