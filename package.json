@@ -29,7 +29,7 @@
     "ytsr": "^3.0.0"
   },
   "devDependencies": {
-    "axios": "^0.26.0"
+    "axios": "^0.28.0"
   },
   "lavamoat": {
     "allowScripts": {
