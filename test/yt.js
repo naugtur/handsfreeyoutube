@@ -1,5 +1,5 @@
 const ytpl = require('ytpl')
-const ytdl = require('ytdl-core')
+const ytdl = require('@distube/ytdl-core')
 const assert = require('assert')
 const axios = require('axios')
 
