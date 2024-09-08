@@ -3,6 +3,14 @@ const ytdl = require('@distube/ytdl-core')
 const assert = require('assert')
 const axios = require('axios')
 
+function getVidInfo(vid) {
+    return ytdl.getInfo(`https://www.youtube.com/watch?v=${vid}`)
+        .then(info => {
+            const formats = ytdl.filterFormats(info.formats, 'audioonly')
+            const prefered = formats.filter(f => f.container.match(/mp4|m4a/))[0]
+            return prefered || formats[0]
+        })
+}
 
 const youtubeToolsTest = async () => {
     try {
@@ -16,7 +24,7 @@ const youtubeToolsTest = async () => {
         assert(playlist.items[0].id)
 
         const vid = await ytdl.getInfo(`https://www.youtube.com/watch?v=${playlist.items[0].id}`)
-        console.log(vid)
+        console.log(ytdl.filterFormats(vid.formats, 'audioonly'), `https://www.youtube.com/watch?v=${playlist.items[0].id}`)
         assert(vid)
         assert(vid.formats)
         assert(vid.formats[0])
